@@ -4,7 +4,9 @@ Frontend-only SPA (Vue 3 + TypeScript + AgGrid Enterprise tree) по ТЗ MStroy
 
 ## Запуск
 
-Репозиторий автономный: данных с бэкенда нет, дерево грузится из `public/items.json`.
+Репозиторий автономный: данных с бэкенда нет, дерево грузится из `public/items.json` на каждый reload (`fetch`, без кэша).
+
+В Docker файл монтируется volume’ом: правки `public/items.json` на хосте подхватываются после F5, без `docker compose build`.
 
 ### Docker (канон)
 
@@ -69,7 +71,7 @@ import { TreeStore } from './src/tree'
 
 ```
 service-i/
-  public/items.json   # статика для fetch('/items.json')
+  public/items.json   # статика; в Docker — volume → /items.json
   src/tree/           # TreeStore + types
   src/components/     # TreeGrid (AgGrid)
   Dockerfile          # multi-stage: node build → nginx runtime

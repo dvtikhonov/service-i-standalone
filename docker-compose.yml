@@ -3,4 +3,7 @@ services:
     build: .
     ports:
       - "8089:80"
+    volumes:
+      # Данные с хоста — без rebuild: правка public/items.json → F5
+      - ./public/items.json:/usr/share/nginx/html/items.json:ro
     restart: unless-stopped

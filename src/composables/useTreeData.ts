@@ -19,7 +19,7 @@ const rowData = computed(() => {
 
 async function loadItems(): Promise<void> {
   loading.value = true
-  const res = await fetch('/items.json')
+  const res = await fetch('/items.json', { cache: 'no-store' })
   const data = (await res.json()) as TreeItem[]
   await delay(2000)
   store.setItems(data)

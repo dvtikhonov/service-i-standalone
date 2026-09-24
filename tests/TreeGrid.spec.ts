@@ -92,7 +92,7 @@ describe('TreeGrid', () => {
     )
     expect(rows.find((r) => r.id === 1)?.label).toBe('Айтем 1')
 
-    expect(fetch).toHaveBeenCalledWith('/items.json')
+    expect(fetch).toHaveBeenCalledWith('/items.json', { cache: 'no-store' })
 
     wrapper.unmount()
   })
